@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: SmartSupportDesk
+
+  ai:
+    bedrock:
+      region: ${AWS_REGION:eu-west-1}
+      chat:
+        model: ${BEDROCK_MODEL_ID:anthropic.claude-3-sonnet-20240229-v1:0}
+
+aws:
+  knowledge-base-id: ${AWS_KB_ID}
+
