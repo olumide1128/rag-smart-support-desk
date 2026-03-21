@@ -1,26 +1,28 @@
 package com.rag.SmartSupportDesk.config;
 
+import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.bedrockagentruntime.BedrockAgentRuntimeClient;
 
 @Configuration
 public class AiConfig {
 
     @Bean
-    public ChatClient chatClient(BedrockChatModel model, VectorStore vectorStore) {
+    public BedrockAgentRuntimeClient bedrockAgentRuntimeClient(
+            @Value("${spring.ai.bedrock.region}") String region) {
 
-        QuestionAnswerAdvisor advisor = new QuestionAnswerAdvisor(vectorStore);
-
-        advisor.setRequireContext(true);
-        advisor.setNoContextResponse(
-                "I couldn't find any relevant information in our knowledge base. " +
-                        "Please rephrase your question or contact support."
-        );
-
-        return ChatClient.builder(model)
-                .defaultAdvisors(advisor)
+        return BedrockAgentRuntimeClient.builder()
+                .region(Region.of(region))
                 .build();
+    }
+
+    @Bean
+    public ChatClient chatClient(BedrockProxyChatModel model) {
+        return ChatClient.builder(model).build();
     }
 }
 

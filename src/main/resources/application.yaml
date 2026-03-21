@@ -5,7 +5,7 @@ spring:
   ai:
     bedrock:
       region: ${AWS_REGION:eu-west-1}
-      chat:
+      converse:
         model: ${BEDROCK_MODEL_ID:anthropic.claude-3-sonnet-20240229-v1:0}
 
 aws:

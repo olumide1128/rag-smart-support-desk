@@ -18,27 +18,22 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	set('springAiVersion', "1.1.2")
-}
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-//	// Spring AI Bedrock integration
-	implementation 'org.springframework.ai:spring-ai-starter-model-bedrock'
+
+	implementation platform('org.springframework.ai:spring-ai-bom:1.1.2')
+
+	// Spring AI Bedrock integration
+	implementation 'org.springframework.ai:spring-ai-starter-model-bedrock-converse'
+
+	implementation 'org.springframework.ai:spring-ai-rag'
 
 	// AWS SDK for Bedrock Agent Runtime (Knowledge Base retrieval)
 	implementation 'software.amazon.awssdk:bedrockagentruntime:2.25.0'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
-	}
 }
 
 tasks.named('test') {
