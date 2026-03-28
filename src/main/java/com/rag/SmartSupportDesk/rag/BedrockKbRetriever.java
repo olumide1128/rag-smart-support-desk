@@ -1,6 +1,5 @@
 package com.rag.SmartSupportDesk.rag;
 
-import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.rag.Query;
 import org.springframework.ai.rag.retrieval.search.DocumentRetriever;
@@ -20,6 +19,9 @@ public class BedrockKbRetriever implements DocumentRetriever {
 
     private final BedrockAgentRuntimeClient client;
     private final String knowledgeBaseId;
+
+    @Value("${aws.bedrock.retrieval.similarity-threshold:0.5}")
+    private double similarityThreshold;
 
     public BedrockKbRetriever(BedrockAgentRuntimeClient client, @Value("${aws.knowledge-base-id}") String knowledgeBaseId) {
         this.client = client;
@@ -45,6 +47,7 @@ public class BedrockKbRetriever implements DocumentRetriever {
         RetrieveResponse response = client.retrieve(retrieveRequest);
 
         return response.retrievalResults().stream()
+                .filter(r -> r.score() >= similarityThreshold)
                 .map(r -> new Document(
                         r.content().text()
                 ))

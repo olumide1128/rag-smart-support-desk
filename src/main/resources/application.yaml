@@ -6,8 +6,23 @@ spring:
     bedrock:
       region: ${AWS_REGION:eu-west-1}
       converse:
-        model: ${BEDROCK_MODEL_ID:anthropic.claude-3-sonnet-20240229-v1:0}
-
+        chat:
+          options:
+            model: ${BEDROCK_MODEL_ID:amazon.nova-lite-v1:0}
 aws:
   knowledge-base-id: ${AWS_KB_ID}
+  bedrock:
+    retrieval:
+      similarity-threshold: 0.5
+
+
+#aws:
+#  knowledge-base-id: ${AWS_KB_ID}
+
+
+log:
+  level:
+    org.springframework.ai: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
+
 

@@ -1,7 +1,5 @@
 package com.rag.SmartSupportDesk.config;
 
-import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +18,6 @@ public class AiConfig {
                 .build();
     }
 
-    @Bean
-    public ChatClient chatClient(BedrockProxyChatModel model) {
-        return ChatClient.builder(model).build();
-    }
+
 }
 

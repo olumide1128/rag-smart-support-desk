@@ -15,8 +15,8 @@ public class RagService {
     private final ChatClient chatClient;
     private final BedrockKbRetriever retriever;
 
-    public RagService(ChatClient chatClient, BedrockKbRetriever retriever) {
-        this.chatClient = chatClient;
+    public RagService(ChatClient.Builder chatClient, BedrockKbRetriever retriever) {
+        this.chatClient = chatClient.build();
         this.retriever = retriever;
     }
 

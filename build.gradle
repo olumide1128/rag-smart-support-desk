@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.5.11'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.5.11'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.rag'
@@ -9,33 +9,35 @@ version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
 
-	implementation platform('org.springframework.ai:spring-ai-bom:1.1.2')
+    implementation platform("org.springframework.ai:spring-ai-bom:1.1.2")
 
-	// Spring AI Bedrock integration
-	implementation 'org.springframework.ai:spring-ai-starter-model-bedrock-converse'
+    // Spring AI Bedrock integration
+    implementation 'org.springframework.ai:spring-ai-starter-model-bedrock-converse'
 
-	implementation 'org.springframework.ai:spring-ai-rag'
+    implementation 'org.springframework.ai:spring-ai-rag'
 
-	// AWS SDK for Bedrock Agent Runtime (Knowledge Base retrieval)
-	implementation 'software.amazon.awssdk:bedrockagentruntime:2.25.0'
+    // AWS SDK for Bedrock Agent Runtime (Knowledge Base retrieval)
+    implementation 'software.amazon.awssdk:bedrockagentruntime:2.25.0'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
