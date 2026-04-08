@@ -18,7 +18,8 @@ public class RagController {
 
     @PostMapping("/ask")
     public String ask(@RequestBody String question) {
-        return ragService.ask(question);
+//        return ragService.ask(question);
+        return null;
     }
 }
 

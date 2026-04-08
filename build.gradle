@@ -27,7 +27,14 @@ dependencies {
     // Spring AI Bedrock integration
     implementation 'org.springframework.ai:spring-ai-starter-model-bedrock-converse'
 
+    implementation 'org.springframework.ai:spring-ai-transformers'
+
     implementation 'org.springframework.ai:spring-ai-rag'
+
+    implementation 'org.springframework.ai:spring-ai-starter-model-transformers'
+
+    implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
+
 
     // AWS SDK for Bedrock Agent Runtime (Knowledge Base retrieval)
     implementation 'software.amazon.awssdk:bedrockagentruntime:2.25.0'

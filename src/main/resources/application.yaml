@@ -9,15 +9,12 @@ spring:
         chat:
           options:
             model: ${BEDROCK_MODEL_ID:amazon.nova-lite-v1:0}
-aws:
-  knowledge-base-id: ${AWS_KB_ID}
-  bedrock:
-    retrieval:
-      similarity-threshold: 0.5
-
-
-#aws:
-#  knowledge-base-id: ${AWS_KB_ID}
+    embedding:
+      transformer:
+        onnx:
+          model-uri: https://huggingface.co/intfloat/e5-small-v2/resolve/main/model.onnx
+        tokenizer:
+          uri: https://huggingface.co/intfloat/e5-small-v2/raw/main/tokenizer.json
 
 
 log:
